@@ -1,0 +1,24 @@
+<nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="/images/chefs-hat.png" alt="" />
+        <p>Bakery</p>
+      </div>
+      <div class="nav-links">
+        <ul class="menu1">
+          <li><a href="/homePage" class="<%= navLocation == 'main' ? 'active' : '' %> ">Main page</a></li>
+          <li><a href="/dishes" class="<%= navLocation == 'dishes' ? 'active' : '' %> ">Dishes</a></li>
+        </ul>
+        <ul class="menu2">
+          <li><a href="/orders" class="<%= navLocation == 'order' ? 'active' : '' %> ">Orders</a></li>
+          <li><a href="">List of dishes</a></li>
+        </ul>
+      </div>
+      <div class="burger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </nav>
+  <script src="/js/nav.js"></script>

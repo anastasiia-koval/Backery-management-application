@@ -1,0 +1,351 @@
+.orderContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.orderContainer .listOrdered {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 25px;
+  width: 100%;
+}
+
+.orderContainer .initials h3,
+.orderContainer .orderForm h3,
+.orderContainer .listOfOrdered h3 {
+  margin-bottom: 10px;
+  margin-left: 12px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.orderContainer .discountContainer {
+  display: flex;
+  align-items: flex-start;
+  /* width: 10%; */
+  border-radius: 3px;
+  border: 1.5px solid #596161;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 16px 24px;
+  width: auto;
+  height: 44px;
+}
+
+.orderContainer .listOrdered .initials,
+.orderContainer .listOrdered .orderForm {
+  display: grid;
+  grid-gap: 10px;
+  padding: 30px;
+  border-radius: 3px;
+  border: 1.5px solid #596161;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+.orderContainer .listOrdered .listOfOrdered {
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1.5px solid #596161;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.orderContainer .discountContainer .discountForm {
+  text-align: left;
+  padding: 0px 30px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===================Initials======================== */
+.orderContainer .listOrdered .initials .ordererName {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.orderContainer .listOrdered .initials .ordererSurname {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.orderContainer .listOrdered .initials .telephone {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+/* =====================OrderForm======================= */
+
+.orderContainer .listOrdered .orderForm .adress {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.orderContainer .listOrdered .orderForm .floor {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.orderContainer .listOrdered .orderForm .apartaments {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.orderContainer .listOrdered .orderForm .orderDate {
+  grid-column: 1;
+  grid-row: 4;
+}
+.orderContainer .listOrdered .orderForm .orderTime {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+/* =========================Forms - label, input settings======================== */
+.orderContainer .forms {
+  text-align: left;
+  padding: 5px 30px 10px 10px;
+}
+
+.orderContainer .forms label {
+  color: #8d8d8d;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+.orderContainer .forms input {
+  border: 1px solid rgb(161, 161, 161);
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  color: #303030;
+  width: 100%;
+}
+
+.orderContainer .discountContainer .discountForm input {
+  border: 1px solid rgb(161, 161, 161);
+  border: none;
+  border-radius: 120px;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: rgb(192, 51, 51);
+  color: #f5f5f5;
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* ====================Buttons=================== */
+.orderContainer .buttonForm {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.orderContainer .button {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.orderContainer .button a,
+.orderContainer .button input {
+  border: none;
+  border-radius: 3px;
+  padding: 12px 50px;
+  background-color: rgba(218, 82, 53, 1);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+ .addBut input{
+  background-color: rgba(139, 177, 101, 1) !important;
+}
+
+.orderContainer .buttonForm .editBt a,
+.orderContainer .buttonForm .saveBt input {
+  background-color: #fda708;
+}
+
+/* =======================Edit button================================== */
+.orderContainer #buttonForm #editBt {
+  border: none;
+  border-radius: 3px;
+  padding: 12px 77px;
+  background-color: #ffbb33;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.orderContainer #buttonForm {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.listOfOrdered ul {
+  list-style-type: none;
+  width: 100%;
+}
+.listOfOrdered ul li #productPhoto {
+  float: left;
+  margin: 0 15px 0 0;
+  height: 120px;
+  width: 120px;
+}
+
+.listOfOrdered ul li {
+  border-bottom: 0.2px solid #ededed;
+  padding: 5px 30px 10px 10px;
+  overflow: auto;
+}
+
+.listOfOrdered ul li .product {
+  display: flex;
+}
+
+.listOfOrdered ul li #nameofDish {
+  font-weight: 300;
+  font-size: 15px;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.listOfOrdered ul li #plusMinus {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.listOfOrdered ul li #plusMinus .collapsePlusMinus {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.listOfOrdered ul li #plusMinus img {
+  width: 1.6rem;
+}
+
+.listOfOrdered ul li #plusMinus #addBusket {
+  display: none;
+}
+
+.listOfOrdered ul li #plusMinus .collapsePlusMinus button {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.listOfOrdered ul li #plusMinus .priceContainer p {
+  margin-left: 10px;
+}
+
+.listOfOrdered ul li #plusMinus p {
+  color: #303030;
+}
+
+.listOfOrdered #formTotal {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.listOfOrdered #formTotal #finalPrice {
+  color: #8d8d8d;
+  text-align: center;
+  padding: 10px;
+}
+.listOfOrdered #formTotal #cost {
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+}
+
+.listOfOrdered .displayDiscount input {
+  display: none;
+}
+/* ===================Media query======================= */
+@media screen and (max-width: 930px) {
+  .orderContainer .listOrdered .initials,
+  .orderContainer .listOrdered .orderForm {
+    display: flex;
+    flex-direction: column;
+  }
+  .orderContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .listOfOrdered .displayDiscount input {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(161, 161, 161);
+    border: none;
+    border-radius: 120px;
+    padding: 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    background-color: rgb(192, 51, 51);
+    color: #f5f5f5;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    width: 20%;
+  }
+  .listOfOrdered .displayDiscount {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .orderContainer .discountContainer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .listOfOrdered ul li #plusMinus .collapsePlusMinus {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin-left: 80px;
+  }
+
+  .listOfOrdered ul li #plusMinus .collapsePlusMinus button {
+    margin: 4px 0;
+  }
+
+  .listOfOrdered ul li #plusMinus .priceContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -50px;
+  }
+
+  .listOfOrdered ul li #plusMinus {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100%;
+    margin-right: 20px;
+  }
+}

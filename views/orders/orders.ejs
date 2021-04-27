@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/view.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Orders</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+      <h2>Orders</h2>
+      <hr />
+      <table class="table-orders">
+        <thead>
+          <tr>
+            <th>Order number</th>
+            <th>Date</th>
+            <th>Orderer Name</th>
+            <th>Orderer Surname</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.map((order,index) => { %>
+
+          <tr>
+            <td data-label="Order number"><%=index+1%></td>
+            <% var d = new Date(order.orderingDate); %>
+                <% var curr_date = d.getDate(); %> 
+                <% var curr_month = d.getMonth() + 1; %>  
+                <% var curr_year = d.getFullYear(); %> 
+            <td data-label="Date"><%= `${curr_year}-${curr_month}-${curr_date}`%></td>
+            <td data-label="Orderer Name"><%= order.clientName%></td>
+            <td data-label="Orderer Surname"><%= order.clientSurname%></td>
+            <td data-label="Address"><%= order.address%></td>
+            <td>
+              <ul>
+                <li id="detailBt">
+                  <a href="/orders/<%=order._id%>">Details</a>
+                </li>
+                <li id="editBt"><a href="/orders/<%=order._id%>/edit">Edit</a></li>
+
+                <li id="editBtNone">
+                  <button>
+                    <a href="/orders/<%=order._id%>/edit";
+                      ><img src="/images/pencil 1.svg" alt=""
+                    /></a>
+                  </button>
+                </li>
+                <form action="/orders/<%=order._id%>?_method=DELETE" method="POST">
+                  <li id="deleteBt">
+                    <input type="submit" value="Delete">
+                  </li>
+                </form>
+                
+
+                <li id="deleteBtNone">
+                  <button>
+                    <a href=""
+                      ><img src="/images/delete 1.svg" alt=""
+                    /></a>
+                  </button>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <div class="addBt">
+        <button>
+          <a href="/orders/new">Add new order</a>
+        </button>
+      </div>
+    </main>
+
+    <%- include('../partials/footer.ejs') %> 
+    
+  </body>
+</html>

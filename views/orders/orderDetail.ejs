@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/view.css" />
+    <link rel="stylesheet" href="/css/orderDetails.css" />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+    rel="stylesheet"
+  />
+    <title>Order Details</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+        <div class="goBack">
+          <a href="/orders" class="previous">Orders</a>
+          <span class="line"></span>
+          <a href="" class="current">Order details</a>
+        </div>
+        <div class="orderContainer">
+          
+          <div class="listOrdered">
+
+            <div class="listOfOrdered">
+              <div class="displayDiscount">
+                <h3>Dishes</h3>
+                
+                  <input
+                  type="text"
+                  name="disc"
+                  value="-10%"
+                  id="disc"
+                  disabled
+                  />
+              </div>
+              <% if(order.dishes.length === 0){ %> 
+                <% console.log('There is no dishes'); %> 
+                <p>No dishes</p>
+            <% } else { %> 
+               <ul>
+                   <% for( let product of order.dishes){ %> 
+                    <li>
+                        <div class="product">
+                          <img id="productPhoto"
+                          src="<%=product.image%>"
+                          alt=""
+                          />
+                          <h5 id="nameofDish"><%= product.name %> </h5>
+        
+                          <div id="plusMinus">
+                            <div class="collapsePlusMinus">
+                              <button>
+                                <img src="/images/add 1.svg" alt="">
+                              </button>
+                              <% for(let dishQuant of order.dishesOrder){ %> 
+                                <% if(product.name === dishQuant.name) { %> 
+                                  <p name="busket"> <%= dishQuant.quantity %> </p>
+                                <% } %> 
+                              <% } %> 
+                              <button>
+                                <img src="/images/add 2.svg" alt="">
+                              </button>
+        
+                            </div>
+                            <div class="priceContainer">
+                              <p id="price"><%= product.price %> $</p>
+                            </div>
+
+                          </div>
+                      
+                        </div>
+        
+                      </li>
+
+                   <% } %> 
+               </ul>
+               <div id="formTotal">
+                <p id="finalPrice">Total:<p name="totalPrice" id="cost"><%= order.totalPrice %> $</p></p>
+              </div>
+            <% } %> 
+  
+              
+           
+  
+            </div>
+  
+            <div class="initials">
+              <h3>Contact</h3>
+  
+              <div class="forms ordererName" >
+                <label for="ordererName">First name:</label><br />
+                <input
+                  type="text"
+                  name="ordererName"
+                  value="<%= order.clientName %> "
+                  id="ordererName"
+                  disabled
+                />
+              </div>
+    
+              <div class="forms ordererSurname" >
+                <label for="ordererSurname">Last name:</label><br />
+                <input
+                  type="text"
+                  name="ordererSurname"
+                  value="<%= order.clientSurname %> "
+                  id="ordererSurname"
+                  disabled
+                />
+              </div>
+  
+              <div class="forms telephone" >
+                <label for="telephone">Phone number:</label><br />
+                <input
+                  type="tel"
+                  name="telephone"
+                  value="<%= order.phoneNumber %> "
+                  id="telephone"
+                  disabled
+                />
+              </div>
+            </div>
+          
+            <div class="orderForm">
+              <h3>Delivery</h3>
+  
+              <div class="forms adress">
+                <label for="adress">Address:</label><br />
+                  <input
+                    type="text"
+                    name="adress"
+                    value="<%= order.address %> "
+                    id="adress"
+                    disabled
+                  />
+              </div>
+  
+                <div class="forms apartaments" >
+                  <label for="adresApart">Apartaments:</label><br />
+                  <input
+                    type="number"
+                    name="address"
+                    value="<%= order.apartament%>"
+                    id="apartaments"
+                    disabled
+                  />
+                </div>
+  
+                <div class="forms floor" >
+                  <label for="floor">Floor:</label><br />
+                     <input
+                        type="number"
+                        name="floor"
+                        value="<%= order.floor%>"
+                        id="floor"
+                        disabled
+                      />
+                  
+                </div>
+  
+            <div class="forms orderDate" >
+              <label for="orderingDate">Date:</label><br />
+              <input
+                type="date"
+                name="orderingDate"
+                <% var d = new Date(order.orderingDate); %>
+                <% var curr_date = d.getDate(); %> 
+                <% var curr_month = d.getMonth() + 1; %>  
+                <% var curr_year = d.getFullYear(); %> 
+                value = "<%= curr_month < 10 && curr_date < 10 ? `${curr_year}-0${curr_month}-0${curr_date}` : `${curr_year}-${curr_month}-${curr_date}`%>"
+                id="orderDate"
+                disabled
+              />
+            </div>
+  
+            <div class="forms orderTime" >
+              <label for="orderTime">Delivery time:</label><br />
+              <input
+                type="time"
+                name="orderTime"
+                value="<%= order.deliveryTime %>"
+                id="orderTime"
+                disabled
+              />
+            </div>
+  
+          </div>
+          
+            <div id="buttonForm">
+              <a href="/orders/<%=order._id%>/edit" id="editBt">Edit</a>
+            </div>
+          </div>
+  
+          <div class="discountContainer">
+            <div class="discountForm">
+              <label for="discount">Discount: </label>
+              <input
+                type="text"
+                name="discount"
+                value="<%=order.discount%>"
+                id="discount"
+                disabled
+              />
+          </div>
+  
+          </div>
+        </div>
+  
+      </main>
+      <%- include('../partials/footer.ejs') %> 
+</body>
+</html>

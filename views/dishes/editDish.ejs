@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/view.css" />
+    <link rel="stylesheet" href="/css/dishDetails.css" />
+    <link rel="stylesheet" href="/css/editDish.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Edit Dish</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+      <div class="goBack">
+        <a href="/dishes/<%= dish._id%>" class="previous"><%=dish.name%> </a>
+        <span class="line"></span>
+        <a href="" class="current">Editing</a>
+      </div>
+
+      <div class="dishDetail">
+        <form action="/dishes/<%=dish._id%>?_method=PUT" method="POST">
+
+          <div class="dishContainer">
+            <div class="forms">
+              <label for="dishName">Name:<sup>*</sup></label>
+              <br />
+              <input
+                type="text"
+                name="name"
+                value="<%= dish.name %> "
+                id="dishName"
+                class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('name')) ? "inputs error-input" : "inputs" %>"
+              />
+              <p id="errorDishName" class="errors">
+                <% if(validationErrors !== ''){ %> 
+                  <% if (validationErrors.find(e => e.path.includes('name'))) { %> 
+                    <%= validationErrors.find(e => e.path.includes('name')).message %> 
+                  <% } %> 
+                <% } %> 
+              </p>
+            </div>
+
+            <div class="forms">
+              <label for="dishPicture">Picture:<sup>*</sup></label
+              ><br />
+              <input type="text" name="image" value="<%= dish.image %>" 
+              class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('image')) ? "inputs error-input" : "inputs" %>" 
+              id="dishPicture" />
+              <p id="errorDishName" class="errors">
+                <% if(validationErrors !== ''){ %> 
+                  <% if (validationErrors.find(e => e.path.includes('image'))) { %> 
+                    <%= validationErrors.find(e => e.path.includes('image')).message %> 
+                  <% } %> 
+                <% } %> 
+              </p>
+              
+            </div>
+
+            <div class="forms">
+              <label for="dishPrice">Price:<sup>*</sup></label>
+              <br />
+              <input
+                type="number"
+                name="price"
+                value="<%= dish.price %>"
+                id="dishPrice"
+                class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('price')) ? "inputs error-input" : "inputs" %>"
+              />
+            </div>
+
+            <div class="forms">
+              <label for="dishDescription">Description:</label><br />
+              <textarea
+                name="description"
+                id="dishDescription"
+                cols="30"
+                rows="10"
+              ><%= dish.description%></textarea>
+            </div>
+          </div>
+
+          <div class="buttonForm">
+            <div class="button saveBt">
+              <input type="submit" value="Save">
+            </div>
+
+            <div class="button">
+              <a href="/dishes/<%=dish._id%>">Cancel</a>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </main>
+    <%- include('../partials/footer.ejs') %> 
+  </body>
+</html>

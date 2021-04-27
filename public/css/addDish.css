@@ -1,0 +1,80 @@
+main .containerAddDish .LogInForm {
+  padding: 30px;
+  border-radius: 3px;
+  border: 1.5px solid #596161;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+}
+
+.containerAddDish .LogInForm h3{
+  margin-bottom: 10px;
+  margin-left: 12px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+
+.containerAddDish .LogInForm .forms label{
+  color: #8d8d8d;
+  font-weight: 100;
+  font-size: 15px;
+}
+.containerAddDish .LogInForm .forms label sup {
+  font-weight: 100;
+  font-size: 15px;
+  color: rgb(139, 14, 14);
+}
+
+.containerAddDish .LogInForm .forms input,
+.containerAddDish .LogInForm .forms textarea {
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  color: #303030;
+  width: 100%;
+}
+
+.containerAddDish .forms {
+  text-align: left;
+  padding: 5px 30px 10px 10px;
+}
+
+
+
+/* =====================Buttons==================== */
+.containerAddDish .buttonForm{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: calc(60% + 60px);
+  margin: 0 auto;
+}
+
+.containerAddDish .button input,
+.containerAddDish .button a {
+    border: none;
+    border-radius: 3px;
+    padding: 12px 50px;
+    background-color: #fda708;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.containerAddDish .button {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10px;
+    margin-top: 25px;
+}
+
+.containerAddDish .buttonForm .addBut input{
+    background-color: rgb(51, 158, 51);
+}
+
+

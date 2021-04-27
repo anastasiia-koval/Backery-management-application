@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/dishes.css" />
+    <link rel="stylesheet" href="/css/view.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Dishes</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <main>
+      
+      <h2>Dishes</h2>
+      <hr />
+
+      <div class="gridCards">
+        <% for( let data1 of data ) { %>
+
+        <div class="card">
+          <% if(data1.image){ %> 
+            <img src="<%= data1.image%>"  alt="cookies" class="dishPhoto" />
+          <% } %> 
+          
+          <div class="endCard">
+            <div class="text">
+              <div class="namePrice">
+                <h3><%= data1.name %> </h3>
+                <p class="price"><%= data1.price %> $</p>
+              </div>
+              <p><%= data1.description %> </p>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <div id="detailBt">
+              <a href="/dishes/<%= data1._id%>">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <% } %>
+      </div>
+
+      <div class="addBt">
+        <button>
+          <a href="/dishes/new">Add new dishes</a>
+        </button>
+      </div>
+    </main>
+
+    <%- include('../partials/footer.ejs') %> 
+  </body>
+</html>

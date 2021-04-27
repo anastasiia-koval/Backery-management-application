@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddDishOrder</title>
+    
+</head>
+<body>
+    <div class="addDish">
+        <input
+          type="checkbox"
+          name="example_accordion"
+          id="section1"
+          class="accordion__input"
+          class="inputs"
+        />
+        <label for="section1" class="accordion__label">Dishes</label>
+        <div class="accordion__content">
+
+          <ul>
+            <% for( let product of data){ %> 
+            <li>
+              <div class="product">
+                <img
+                  id="productPhoto"
+                  src="<%= product.image %>"
+                  alt="cookies"
+                />
+                <div class="priceContainer">
+                  <h5 id="nameofDish"><%= product.name %> </h5>
+                  <p id="price"><%= product.price %> $ </p>
+                </div>
+                <!-- <div class="buy">
+                  <div class="addButton">
+                    <button type="button">Add to basket</button>
+                  </div>
+                </div> -->
+                <div class ="buy">
+                  <input type="checkbox" name="addBusket" id="addBasket" value="<%= product.name %>">
+                </div>
+              </div>
+            </li>
+          <% } %> 
+          </ul>
+
+        </div>
+      </div>
+    
+</body>
+</html>

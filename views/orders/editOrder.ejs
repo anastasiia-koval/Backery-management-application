@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/view.css" />
+    <link rel="stylesheet" href="/css/orderDetails.css" />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+    rel="stylesheet"
+  />
+  
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+        <div class="goBack">
+          <a href="/orders" class="previous">Orders</a>
+          <span class="line"></span>
+          <a href="" class="current">Editting</a>
+        </div>
+        <form action="/orders/<%= order._id%>?_method=PUT" id="form" method="POST">
+        <div class="orderContainer">
+       
+          <div class="listOrdered">
+
+            <div class="listOfOrdered">
+              <div class="displayDiscount">
+                <h3>Dishes</h3>
+                
+                  <input
+                  type="text"
+                  name="disc"
+                  value="<%=order.discount%>"
+                  id="disc"
+                  disabled
+                  />
+              </div>
+              
+              <% if(order.dishesOrder.length === 0){ %> 
+                <% console.log('There is no dishes'); %> 
+                <p>No dishes</p>
+            <% } else { %> 
+
+              <p class="errors">
+                <% if(errorQuantity !== ''){ %> 
+                  <%= errorQuantity %> 
+                <% } %> 
+             </p>
+               <ul>
+                   <% for( let product of order.dishes){ %> 
+                    <li>
+                        <div class="product">
+                          <img id="productPhoto"
+                          src="<%=product.image%>"
+                          alt=""
+                          />
+                          <h5 id="nameofDish"><%= product.name %> </h5>
+        
+                          <div id="plusMinus">
+                            <div class="collapsePlusMinus">
+                             <p>Quantity: </p>
+                              <% for(let dishQuant of order.dishesOrder){ %> 
+                                <% if(dishQuant.name === product.name) {%> 
+                              <input type="text" name="busketName" id="addBusket" value="<%= dishQuant.name %>">
+                              <input type="text" name="busket" value="<%= dishQuant.quantity %>">
+                                <% } %> 
+                              <% } %> 
+                            </div>
+                            <div class="priceContainer">
+                              <p id="price"><%= product.price %> $</p>
+                            </div>
+
+                          </div>
+                      
+                        </div>
+        
+                      </li>
+
+                   <% } %> 
+               </ul>
+            <% } %> 
+            
+              <div id="formTotal">
+                <p id="finalPrice">Total:<p id="cost"><%= order.totalPrice %> $</p></p>
+              </div>  
+            </div>
+
+  
+            <div class="initials">
+              <h3>Contact</h3>
+  
+              <div class="forms ordererName" >
+                <label for="clientName">First name:</label><br />
+                <input
+                  type="text"
+                  name="clientName"
+                  value="<%= order.clientName %> "
+                  id="ordererName"
+                  class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('clientName')) ? "inputs error-input" : "inputs" %>"
+                
+                />
+                <p id="errorOrdererName" class="errors">
+                  <% if(validationErrors !== ''){ %> 
+                    <% if (validationErrors.find(e => e.path.includes('clientName'))) { %> 
+                      <%= validationErrors.find(e => e.path.includes('clientName')).message %> 
+                    <% } %> 
+                  <% } %> 
+                </p>
+              </div>
+    
+              <div class="forms ordererSurname" >
+                <label for="clientSurname">Last name:</label><br />
+                <input
+                  type="text"
+                  name="clientSurname"
+                  value="<%= order.clientSurname %> "
+                  id="ordererSurname"
+                  class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('clientSurname')) ? "inputs error-input" : "inputs" %>"
+             
+                />
+                <p id="errorOrdererSurname" class="errors">
+                  <% if(validationErrors !== ''){ %> 
+                    <% if (validationErrors.find(e => e.path.includes('clientSurname'))) { %> 
+                      <%= validationErrors.find(e => e.path.includes('clientSurname')).message %> 
+                    <% } %> 
+                  <% } %> 
+                </p>
+              </div>
+  
+              <div class="forms telephone" >
+                <label for="phoneNumber">Phone number:</label><br />
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value="<%= order.phoneNumber %> "
+                  id="telephone"
+                
+                />
+              </div>
+            </div>
+          
+            <div class="orderForm">
+              <h3>Delivery</h3>
+  
+              <div class="forms adress">
+                <label for="address">Address:</label><br />
+                  <input
+                    type="text"
+                    name="address"
+                    value="<%= order.address %> "
+                    id="adress"
+                    class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('address')) ? "inputs error-input" : "inputs" %>"
+                    
+                  />
+                  <p id="errorOrdererAdres" class="errors">
+                    <% if(validationErrors !== ''){ %> 
+                      <% if (validationErrors.find(e => e.path.includes('address'))) { %> 
+                        <%= validationErrors.find(e => e.path.includes('address')).message %> 
+                      <% } %> 
+                    <% } %> 
+                  </p>
+              </div>
+  
+                <div class="forms apartaments" >
+                  <label for="apartament">Apartaments:</label><br />
+                  <input
+                    type="number"
+                    name="apartament"
+                    value="<%= order.apartament%>"
+                    id="apartaments"
+                    class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('apartament')) ? "inputs error-input" : "inputs" %>"
+                    
+                  />
+                  <p id="errorAppartament" class="errors">
+                    <% if(validationErrors !== ''){ %> 
+                      <% if (validationErrors.find(e => e.path.includes('apartament'))) { %> 
+                        <%= validationErrors.find(e => e.path.includes('apartament')).message %> 
+                      <% } %> 
+                    <% } %> 
+                  </p>
+                </div>
+  
+                <div class="forms floor" >
+                  <label for="floor">Floor:</label><br />
+                     <input
+                        type="number"
+                        name="floor"
+                        value="<%= order.floor%>"
+                        id="floor"
+                     
+                      />
+                </div>
+  
+            <div class="forms orderDate" >
+              <label for="orderDate">Date:</label><br />
+              <input
+                type="date"
+                name="orderingDate"
+                <% var d = new Date(order.orderingDate); %>
+                <% var curr_date = d.getDate(); %> 
+                <% var curr_month = d.getMonth() + 1; %>  
+                <% var curr_year = d.getFullYear(); %> 
+                value = "<%= curr_month < 10 && curr_date < 10 ? `${curr_year}-0${curr_month}-0${curr_date}` : `${curr_year}-${curr_month}-${curr_date}`%>"
+                id="orderDate"
+                class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('orderingDate')) ? "inputs error-input" : "inputs" %>"
+                
+              />
+              <p id="errorOrdererDate" class="errors">
+                <% if(validationErrors !== ''){ %> 
+                  <% if (validationErrors.find(e => e.path.includes('orderingDate'))) { %> 
+                    <%= validationErrors.find(e => e.path.includes('orderingDate')).message %> 
+                  <% } %> 
+                <% } %> 
+              </p>
+            </div>
+  
+            <div class="forms orderTime" >
+              <label for="deliveryTime">Delivery time:</label><br />
+              <input
+                type="time"
+                name="deliveryTime"
+                value="<%= order.deliveryTime %>"
+                id="orderTime"
+                class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('deliveryTime')) ? "inputs error-input" : "inputs" %>"
+                
+              />
+            </div>
+            <p id="errorTime" class="errors">
+              <% if(validationErrors !== ''){ %> 
+                <% if (validationErrors.find(e => e.path.includes('deliveryTime'))) { %> 
+                  <%= validationErrors.find(e => e.path.includes('deliveryTime')).message %> 
+                <% } %> 
+              <% } %> 
+            </p>
+  
+          </div>
+          
+          <div class="buttonForm">
+            <div class="button saveBt">
+              <input type="submit" value="Save">
+            </div>
+
+            <div class="button">
+              <a href="/orders/<%=order._id%>">Cancel</a>
+            </div>
+          </div>
+          </div>
+  
+          <div class="discountContainer">
+            <div class="discountForm">
+              <label for="discount">Discount: </label>
+              <input
+                type="text"
+                name="discount"
+                value="<%=order.discount%> "
+                id="discount"
+                disabled
+              />
+  
+          </div>
+  
+          </div>
+      
+        </div>
+    </form>
+  
+      </main>
+      <%- include('../partials/footer.ejs') %> 
+      <!-- <script src="/js/validationOrder.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/view.css" />
+    <link rel="stylesheet" href="/css/dishDetails.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+      <div class="goBack">
+        <a href="/dishes" class="previous">Dishes</a>
+        <span class="line"></span>
+        <a href="" class="current">Dish details</a>
+      </div>
+
+      <div class="dishDetail">
+        <div class="dishContainer">
+          <div class="forms">
+            <label for="dishName">Name:</label><br />
+            <input
+              type="text"
+              name="name"
+              value="<%= dish.name %> "
+              id="dishName"
+              disabled
+            />
+          </div>
+
+          <div class="forms">
+            <label for="dishPrice">Price:</label><br />
+            <input
+              type="number"
+              name="price"
+              value="<%= dish.price %>"
+              id="dishPrice"
+              disabled
+            />
+          </div>
+
+          <div class="forms">
+            <label for="dishQuantity">Quantity:</label><br />
+            <input
+              type="number"
+              name="quantity"
+              value="<%= dish.quantity %>"
+              id="dishQuantity"
+              disabled
+            />
+          </div>
+
+
+          <div class="forms">
+            <label for="dishDescription">Description:</label><br />
+            <textarea
+              disabled
+              name="description"
+              id="dishDescription"
+              cols="30"
+              rows="10"
+            > <%= dish.description%> </textarea>
+          </div>
+        </div>
+
+        <% if(dish.orders.length === 0){ %> 
+          <% console.log('There is no orders'); %> 
+          <div class="additionalInfo">
+            <h3>List of ordered dishes details</h3>
+            <p>No orders</p>
+          </div>
+          
+      <% } else { %> 
+        <div class="additionalInfo">
+          
+          <h3>List of ordered dishes details</h3>
+
+          <table class="table-details">
+            
+            <tr>
+              <th>Order number</th>
+              <th>Quantity of dishes</th>
+              <th>Discount</th>
+              <th>Action</th>
+            </tr>
+            <tbody>
+              <% for( let order of dish.orders ) { %> 
+              <tr>
+                <td>1 </td>
+                <% for( let dishQuant of order.dishesOrder ) {%> 
+                  <% if(dish.name === dishQuant.name) { %> 
+                    <td><%= dishQuant.quantity%></td>
+                  <% } %> 
+                <% } %> 
+                <td><%= order.discount %></td>
+                <td>
+                  <a href="/orders/<%= order._id %>">Show more</a>
+                </td>
+              </tr>
+              <% } %> 
+            </tbody>
+          
+          </table>
+        </div>
+        <% } %> 
+
+        <div class="buttonForm">
+          <div class="button editBt">
+            <a href="/dishes/<%= dish._id%>/edit">Edit</a>
+          </div>
+
+          <form action="/dishes/<%=dish._id%>?_method=DELETE" method="POST">
+            <div class="button">
+              <input type="submit" value="Delete">
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </main>
+    <%- include('../partials/footer.ejs') %> 
+    <script src="/js/nav.js"></script>
+  </body>
+</html>

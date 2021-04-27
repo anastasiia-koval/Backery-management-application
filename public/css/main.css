@@ -1,0 +1,42 @@
+body{
+    background-image: url(../images/background.png);
+
+    width:100%;
+    height: auto;
+  }
+
+  .navNone{
+    background:none;
+  }
+
+
+  .homeMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 680px;
+  }
+
+  .homeMain .homePage h1 {
+    margin-bottom: 30px;
+    font-weight: 400;
+    color: #ffe5b4;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+  }
+  
+  .homePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .homePage p{
+    color: rgb(223, 223, 223);
+    width: 60%;
+    font-size: 21px;
+    text-align: center;
+    
+  }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/view.css" />
+    <link rel="stylesheet" href="/css/addDish.css" />
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>addDishes</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+      <div class="goBack">
+        <a href="/dishes" class="previous">Dishes</a>
+        <span class="line"></span>
+        <a href="" class="current">Add dish</a>
+      </div>
+      
+      <div class="containerAddDish">
+        <form action="/dishes" id="form" method="POST">
+          <div class="LogInForm">
+            <h3>New dish</h3>
+
+            <div class="forms">
+              <label for="dishName">Name:<sup>*</sup></label
+              ><br />
+              <input type="text" name="name" value="<%= dish.name %>" class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('name')) ? "inputs error-input" : "inputs" %>" id="dishName" />
+              <p id="errorDishName" class="errors">
+                <% if(validationErrors !== ''){ %> 
+                  <% if (validationErrors.find(e => e.path.includes('name'))) { %> 
+                    <%= validationErrors.find(e => e.path.includes('name')).message %> 
+                  <% } %> 
+                <% } %> 
+              </p>
+              
+            </div>
+
+            <div class="forms">
+              <label for="dishPicture">Picture:<sup>*</sup></label
+              ><br />
+              <input type="text" name="image" value="<%= dish.image %>" class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('image')) ? "inputs error-input" : "inputs" %>" id="dishPicture" />
+              <p id="errorDishName" class="errors">
+                <% if(validationErrors !== ''){ %> 
+                  <% if (validationErrors.find(e => e.path.includes('image'))) { %> 
+                    <%= validationErrors.find(e => e.path.includes('image')).message %> 
+                  <% } %> 
+                <% } %> 
+              </p>
+              
+            </div>
+
+            <div class="forms">
+              <label for="dishPrice">Price:<sup>*</sup></label
+              ><br />
+              <input type="number" name="price" value="<%= dish.price %>" class="<%= validationErrors!== '' &&  validationErrors.find(e => e.path.includes('price')) ? "inputs error-input" : "inputs" %>" id="dishPrice" />
+              <p id="errorDishPrice" class="errors">
+                <% if(validationErrors !== ''){ %> 
+                  <% if (validationErrors.find(e => e.path.includes('price'))) { %> 
+                    <%= validationErrors.find(e => e.path.includes('price')).message %> 
+                  <% } %> 
+                <% } %> 
+              </p>
+            </div>
+
+            <div class="forms">
+              <label for="dishQuantity">Quantity:<sup>*</sup></label
+              ><br />
+              <input type="number" name="quantity" id="dishQuantity" />
+             
+            </div>
+
+            <div class="forms">
+              <label for="dishDescription">Description:</label><br />
+              <textarea
+                name="description"
+                id="dishDescription"
+                class="inputs" 
+                rows="10"
+              ><%= dish.description %></textarea>
+            </div>
+          </div>
+
+          <div class="buttonForm">
+            <div class="button addBut">
+              <input type="submit" value="Add" />
+            </div>
+
+            <div class="button">
+              <a href="/dishes">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <%- include('../partials/footer.ejs') %> 
+   
+    <!-- <script src="/js/validationDish.js"></script> -->
+  </body>
+</html>
