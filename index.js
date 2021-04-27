@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const seedDb = require('./seeds');
 const methodOverride = require('method-override');
+const PORT = process.env.PORT || 3000;
 
 //Routes==========================
 const dishesRoutes = require('./routes/dish');
@@ -47,6 +48,6 @@ app.get('/homePage', async(req,res) => {
 
 
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Listening on port 3000")
 })
